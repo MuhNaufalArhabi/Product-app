@@ -20,8 +20,8 @@ class OrderController {
 
   static async getAllOrder(req, res, next) {
     try {
-      const orders = await Order.findAll({where: {UserId: req.user.id}});
-      res.status(200).json({ orders });
+      const orders = await Order.findAll({ where: { UserId: req.user.id } });
+      res.status(200).json(orders);
     } catch (err) {
       next(err);
     }
