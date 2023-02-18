@@ -5,6 +5,9 @@ class OrderController {
   static async createOrder(req, res, next) {
     try {
       const { name, price, quantity } = req.body;
+      if(!name || !price || quantity){
+        throw {name: "OrderError"}
+      }
       const UserId = req.user.id;
       const order = await Order.create({
         name,
@@ -12,7 +15,7 @@ class OrderController {
         quantity,
         UserId,
       });
-      res.status(201).json({ order });
+      res.status(201).json({message : "Succes create order"});
     } catch (err) {
       next(err);
     }
